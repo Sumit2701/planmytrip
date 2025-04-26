@@ -65,7 +65,7 @@ export default function Home() {
               <label htmlFor="prompt" className="block mb-2 text-lg font-medium text-slate-700">
                 Describe your dream trip
               </label>
-              <textarea
+              <input
                 id="prompt"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
