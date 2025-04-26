@@ -60,8 +60,8 @@ export default function Home() {
           <p className="text-xl text-gray-600">Your AI-Powered Travel Planner</p>
         </div>
         
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-10">
-          <form onSubmit={handleSubmit} className="mb-6">
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-5">
+          <form onSubmit={handleSubmit} className="mb-2">
             <div className="mb-5">
               <label htmlFor="prompt" className="block mb-2 text-lg font-medium text-gray-700">
                 Describe your dream trip:
@@ -71,7 +71,7 @@ export default function Home() {
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
-                rows="4"
+                rows="3"
                 placeholder="E.g., I want to plan a 3-day trip to Paris with my family. We enjoy museums, good food, and walking tours."
                 required
               />
