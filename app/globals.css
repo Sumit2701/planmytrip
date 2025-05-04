@@ -1,1 +1,113 @@
 @import "tailwindcss";
+
+:root {
+    --font-family-sans: var(--font-poppins);
+
+    /* Theme Colors */
+    --color-primary: #003a65;
+    /* Deep Blue */
+    --color-primary-hover: #2f90d4;
+    /* Lighter Blue */
+    --color-secondary: #6ec0e9;
+    /* Sky Blue */
+    --color-secondary-hover: #a0d0ec;
+    /* Pale Blue */
+    --color-secondary-light: #eaf6fb;
+    /* Very Light Blue */
+    --color-accent: #ff7a59;
+    /* Warm Orange */
+    --color-accent-hover: #ff6a40;
+    /* Deeper Orange */
+    --color-on-primary: #FFFFFF;
+    --color-on-secondary: #003a65;
+    --color-background: #f7fafc;
+    /* Clean White/Gray */
+    --color-surface: #ffffff;
+    /* Pure White */
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-primary-hover {
+    background-color: var(--color-primary-hover);
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-secondary-hover {
+    background-color: var(--color-secondary-hover);
+}
+
+.text-on-primary {
+    color: var(--color-on-primary);
+}
+
+.text-on-secondary {
+    color: var(--color-on-secondary);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-secondary {
+    color: var(--color-secondary);
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+.bg-accent {
+    background-color: var(--color-accent);
+}
+
+body {
+    font-family: var(--font-family-sans);
+    background: var(--color-background);
+}
+
+/* Layout & Sizing */
+.max-section {
+    max-width: 72rem;
+    /* matches max-w-7xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Typography */
+.heading-1 {
+    font-size: 3rem;
+    /* 48px */
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--color-primary);
+}
+
+.heading-2 {
+    font-size: 2.25rem;
+    /* 36px */
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--color-primary);
+}
+
+.subheading {
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+.body-text {
+    font-size: 1.125rem;
+    /* 18px */
+    color: #222e3a;
+    line-height: 1.7;
+}

@@ -1,0 +1,131 @@
+{
+  "howItWorks": {
+    "steps": [
+      {
+        "number": 1,
+        "title": "Tell Us Your Dream Trip",
+        "description": "Enter your destination, dates, interests, budget, and travel style. The more details, the better the plan.",
+        "imgPlaceholderColor": "bg-blue-100"
+      },
+      {
+        "number": 2,
+        "title": "AI Crafts Your Perfect Plan",
+        "description": "Our AI analyzes your inputs, pulling real-time data for costs, events, and more to create a personalized itinerary.",
+        "imgPlaceholderColor": "bg-green-100"
+      },
+      {
+        "number": 3,
+        "title": "Explore & Adapt On The Go",
+        "description": "Access your dynamic itinerary, track your budget, get packing lists, and even regenerate plans based on your mood.",
+        "imgPlaceholderColor": "bg-purple-100"
+      }
+    ]
+  },
+  "pricing": {
+    "plans": [
+      {
+        "name": "Free",
+        "price": "$0",
+        "frequency": "/month",
+        "description": "Get started with basic trip planning.",
+        "features": [
+          "1 AI-Generated Trip Plan",
+          "Basic Budget Tracking",
+          "Standard Support"
+        ],
+        "cta": "Start for Free",
+        "primary": false
+      },
+      {
+        "name": "Pro",
+        "price": "$12",
+        "frequency": "/month",
+        "description": "Unlock the full power of AI travel planning.",
+        "features": [
+          "Unlimited Trip Plans",
+          "Real-Time Budget Calculator",
+          "Group Planning & Cost Splitting",
+          "Mood-Based Re-Generation",
+          "Smart Packing Lists",
+          "Offline Itinerary Access",
+          "Premium Support"
+        ],
+        "cta": "Go Pro",
+        "primary": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "frequency": "",
+        "description": "Tailored solutions for teams and businesses.",
+        "features": [
+          "All Pro Features",
+          "Dedicated Account Manager",
+          "Custom Integrations",
+          "Volume Discounts",
+          "Priority Support (SLA)",
+          "Advanced Analytics",
+          "White-labeling Options"
+        ],
+        "cta": "Contact Sales",
+        "primary": false
+      }
+    ]
+  },
+  "testimonials": {
+    "items": [
+      {
+        "quote": "\"TripWhiz AI completely changed how I plan my vacations. The mood regeneration is genius! No more stressful planning.\"",
+        "name": "Alex Johnson",
+        "title": "Solo Traveler",
+        "imgSrc": "/images/happy_woman.png"
+      },
+      {
+        "quote": "\"Planning our honeymoon was effortless with TripWhiz. The budget tracker kept us on point, and the itinerary felt so personal.\"",
+        "name": "Samantha Lee",
+        "title": "Newlywed",
+        "imgSrc": "/images/man_promoting.png"
+      },
+      {
+        "quote": "\"Finally, a tool that understands group travel! Coordinating with friends was a breeze, and the shared activities feature is fantastic.\"",
+        "name": "David Chen",
+        "title": "Group Organizer",
+        "imgSrc": "/images/bag.png"
+      }
+    ]
+  },
+  "features": {
+    "items": [
+      {
+        "title": "Group Planning Made Easy",
+        "description": "Collaborate on trips, split budgets smartly, and customize shared or solo activities effortlessly.",
+        "imgSrc": "/images/man_promoting.png"
+      },
+      {
+        "title": "Trip Value Score",
+        "description": "Our AI rates each day, helping you balance adventure and relaxation for the most rewarding experience.",
+        "imgSrc": "/images/woman_with_ticket.png"
+      },
+      {
+        "title": "Live Local Event Sync",
+        "description": "Discover hidden gems! Automatically integrates local concerts, festivals, and markets into your plan.",
+        "imgSrc": "/images/bag.png"
+      },
+      {
+        "title": "Smart Packing Lists",
+        "description": "Never forget essentials. Get personalized packing suggestions based on weather, activities, and destination.",
+        "imgSrc": "/images/luggage.png"
+      },
+      {
+        "title": "Offline Itinerary Access",
+        "description": "No signal? No problem. Download your full itinerary as a PDF or access it via a special offline link.",
+        "imgSrc": "/images/compass.jpg"
+      },
+      {
+        "title": "Emotional Trip Storytelling",
+        "description": "Experience your itinerary presented as a beautiful narrative, not just a list of times and places.",
+        "imgSrc": "/images/happy_woman.png"
+      }
+    ]
+  }
+}
