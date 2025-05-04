@@ -11,7 +11,7 @@ const Navbar = () => {
           href="/triplaniq"
           className="bg-primary text-on-primary px-5 py-2 rounded-md font-medium hover:bg-primary-hover transition-colors"
         >
-          Plan your trip Now
+          Plan your trip Now!!
         </Link>
       </nav>
     </div>
