@@ -5,14 +5,14 @@ import Link from "next/link";
 
 function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-white via-blue-50 to-blue-100 py-24 md:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16 relative z-10">
+    <section className="relative bg-gradient-to-br from-white via-blue-50 to-blue-100 py-20 md:py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12 md:gap-16 relative z-10">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="flex-1 z-10"
+          className="flex-1 z-10 text-center md:text-left"
         >
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -28,7 +28,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-5xl md:text-7xl font-extrabold text-navy-900 leading-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-navy-900 leading-tight mb-4 md:mb-6"
           >
             Discover Your Next <span className="text-secondary">Adventure</span>
           </motion.h1>
@@ -36,7 +36,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-gray-700 text-xl md:text-2xl max-w-xl mb-10"
+            className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-xl mx-auto md:mx-0 mb-8 md:mb-10"
           >
             Plan, book, and experience unforgettable journeys with our
             AI-powered travel platform. Your adventure starts here.
@@ -45,13 +45,13 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex gap-4"
+            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
           >
             <Link href="/triplaniq" passHref>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary hover:bg-blue-700 text-white px-10 py-4 rounded-lg text-lg font-semibold shadow-lg transition-colors duration-200"
+                className="bg-primary hover:bg-blue-700 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold shadow-lg transition-colors duration-200"
               >
                 Get Started
               </motion.button>
@@ -60,7 +60,7 @@ function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white border border-primary text-primary px-8 py-4 rounded-lg text-lg font-semibold shadow-sm hover:bg-primary hover:text-white transition-all duration-200"
+                className="bg-white border border-primary text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold shadow-sm hover:bg-primary hover:text-white transition-all duration-200"
               >
                 Learn More
               </motion.button>
@@ -72,7 +72,7 @@ function HeroSection() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
-          className="flex-1 relative flex justify-center items-center"
+          className="flex-1 relative flex justify-center items-center w-full max-w-sm sm:max-w-md lg:max-w-lg mt-8 md:mt-0"
         >
           {/* Blob SVG background */}
           <svg
