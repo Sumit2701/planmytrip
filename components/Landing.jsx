@@ -1,55 +1,51 @@
 import React from "react";
+import HeroSection from "./Landing/HeroSection";
+import ImageTextSection from "./Landing/ImageTextSection";
+import HowItWorksSection from "./Landing/HowItWorksSection";
+import FeaturesSection from "./Landing/FeaturesSection";
+import PricingSection from "./Landing/PricingSection";
+import TestimonialsSection from "./Landing/TestimonialsSection";
+import CallToActionSection from "./Landing/CallToActionSection";
 
 const Landing = () => {
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-white py-20">
-        <div className="container mx-auto px-6 flex flex-col items-center text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Plan, Book, and Manage Group Trips Effortlessly
-          </h1>
-          <p className="text-lg md:text-2xl text-gray-600 mb-8">
-            The all-in-one platform for travel organizers and participants.
-          </p>
-          <a
-            href="#"
-            className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-blue-700 transition"
-          >
-            Get Started
-          </a>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow text-center">
-              <div className="text-blue-600 text-4xl mb-4">🌍</div>
-              <h3 className="font-bold text-xl mb-2">Easy Trip Planning</h3>
-              <p className="text-gray-600">
-                Organize itineraries, bookings, and payments in one place.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow text-center">
-              <div className="text-blue-600 text-4xl mb-4">💳</div>
-              <h3 className="font-bold text-xl mb-2">Secure Payments</h3>
-              <p className="text-gray-600">
-                Collect and manage payments securely from all participants.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow text-center">
-              <div className="text-blue-600 text-4xl mb-4">🤝</div>
-              <h3 className="font-bold text-xl mb-2">Collaborative Tools</h3>
-              <p className="text-gray-600">
-                Communicate and collaborate with your group seamlessly.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ... add more sections as needed ... */}
+    <div>
+      <HeroSection />
+      <HowItWorksSection />
+      <ImageTextSection
+        imgSrc="/images/suitcase.jpg"
+        imgAlt="Traveler's bag for AI itinerary planning"
+        title="AI Travel Itinerary Generator"
+        subtitle="Personalized, Dynamic Planning"
+        body={
+          "Enter your destination, dates, mood, interests, and budget. Instantly get a dynamic, day-by-day plan with morning, afternoon, and evening slots—tailored just for you."
+        }
+        imgOnLeft={false}
+      />
+      <ImageTextSection
+        imgSrc="/images/brunnete_sitting.jpg"
+        imgAlt="Compass for real-time budget tracking"
+        title="Real-Time Budget Calculator"
+        subtitle="Stay On Track, Effortlessly"
+        body={
+          "See live cost data for food, stay, and transport at your destination. Track your budget usage per day and make smarter travel decisions on the go."
+        }
+        imgOnLeft={true}
+      />
+      <ImageTextSection
+        imgSrc="/images/happy_woman.jpg"
+        imgAlt="Happy traveler for mood-based trip refresh"
+        title="Mood-Based Re-Generation"
+        subtitle="Travel Plans That Adapt to You"
+        body={
+          "Plans change, and so do you. Instantly refresh your trip based on your current mood—adventure, chill, romantic, or cultural. Your journey, your way."
+        }
+        imgOnLeft={false}
+      />
+      <FeaturesSection />
+      <PricingSection />
+      <TestimonialsSection />
+      <CallToActionSection />
     </div>
   );
 };
