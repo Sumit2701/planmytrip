@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import landingData from "../../data/landing.json"; // Import the JSON data
-import useEmblaCarousel from 'embla-carousel-react'; // Import Embla hook
+import landingData from "../../data/landing.json";
+import useEmblaCarousel from "embla-carousel-react";
 
 // Helper component for Embla Dots (copied from FeaturesSection)
 const DotButton = ({ selected, onClick }) => (
   <button
     className={`h-3 w-3 rounded-full mx-1 focus:outline-none transition-colors duration-200 ${
-      selected ? 'bg-primary' : 'bg-gray-300 hover:bg-gray-400'
+      selected ? "bg-primary" : "bg-gray-300 hover:bg-gray-400"
     }`}
     type="button"
     onClick={onClick}
@@ -20,7 +20,10 @@ const HowItWorksSection = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
 
-  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+  const scrollTo = useCallback(
+    (index) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -31,8 +34,8 @@ const HowItWorksSection = () => {
     if (!emblaApi) return;
     onSelect();
     setScrollSnaps(emblaApi.scrollSnapList());
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
   }, [emblaApi, setScrollSnaps, onSelect]);
 
   // Card component
@@ -43,15 +46,19 @@ const HowItWorksSection = () => {
       whileInView={!isCarouselSlide ? { opacity: 1, y: 0 } : {}}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center text-center transition-transform duration-300 md:hover:scale-105 ${
-        isCarouselSlide ? 'embla__slide min-w-0 flex-shrink-0 flex-grow-0 basis-4/5 sm:basis-3/5 md:basis-1/2 mr-4 last:mr-0' : '' // Carousel slide styles
+      className={`bg-white my-4 p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center text-center transition-transform duration-300 md:hover:scale-105 ${
+        isCarouselSlide
+          ? "embla__slide min-w-0 flex-shrink-0 flex-grow-0 basis-4/5 sm:basis-3/5 md:basis-1/2 mr-4 last:mr-0"
+          : "" // Carousel slide styles
       }`}
     >
       {/* Placeholder for Image */}
       <div
         className={`w-full h-40 sm:h-48 ${step.imgPlaceholderColor} rounded-lg mb-6 flex items-center justify-center text-gray-400`}
       >
-        <span className="text-base sm:text-lg font-medium">Image Placeholder</span>
+        <span className="text-base sm:text-lg font-medium">
+          Image Placeholder
+        </span>
       </div>
       <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold text-lg sm:text-xl mb-4">
         {step.number}
@@ -95,14 +102,16 @@ const HowItWorksSection = () => {
 
         {/* Carousel for Mobile/Tablet (below lg) */}
         <div className="lg:hidden">
-          <div className="embla overflow-hidden -ml-4 pl-4" ref={emblaRef}> {/* Added margin/padding for peek effect */} 
-            <div className="embla__container flex"> 
+          <div className="embla overflow-hidden -ml-4 pl-4" ref={emblaRef}>
+            {" "}
+            {/* Added margin/padding for peek effect */}
+            <div className="embla__container flex">
               {steps.map((step, index) => (
                 <StepCard key={index} step={step} isCarouselSlide={true} />
               ))}
             </div>
           </div>
-           {/* Carousel Dots */} 
+          {/* Carousel Dots */}
           <div className="flex justify-center mt-6">
             {scrollSnaps.map((_, index) => (
               <DotButton
