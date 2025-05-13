@@ -80,7 +80,14 @@ export async function POST(req) {
             
             For each activity, include a detailed paragraph (3-5 sentences) that describes what the activity entails, what visitors can expect, and why it's worth doing.
             
-            Calculate and include the total cost for each day based on the individual activity costs.`,
+            Calculate and include the total cost for each day based on the individual activity costs.
+            
+            If the user mentions a budget, make sure to:
+            1. Use most of the available budget without going over the limit
+            2. Distribute the budget appropriately across accommodations, activities, and other expenses
+            3. If the budget seems too low for the requested destinations or duration, suggest alternatives that would fit within the budget
+            4. Clearly indicate the total estimated cost in relation to the specified budget
+            5. Prioritize essential experiences while staying within budget constraints`,
         },
         {
           role: "user",
