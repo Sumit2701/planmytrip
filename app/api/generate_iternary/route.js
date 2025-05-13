@@ -55,8 +55,12 @@ export async function POST(req) {
     const { text } = await req.json();
     console.log("User prompt:", text);
 
+    // Get model name from environment variable, with fallback to default
+    const modelName = process.env.flash2 || "gemini-2.0-flash-001";
+    console.log(`Using AI model: ${modelName}`);
+
     const result = streamObject({
-      model: google("gemini-2.0-flash-001"),
+      model: google(modelName),
       messages: [
         {
           role: "system",
