@@ -8,14 +8,17 @@ export const maxDuration = 60;
 const activitySchema = z.object({
   time: z.string().describe("Time of the activity (e.g., '9:00 AM')"),
   activity: z.string().describe("Description of the activity (e.g., 'Visit the Louvre Museum')"),
-  location: z.string().optional().describe("Location of the activity if applicable (e.g., 'Paris, France')")
+  location: z.string().optional().describe("Location of the activity if applicable (e.g., 'Paris, France')"),
+  description: z.string().describe("A detailed paragraph describing the activity, what to expect, and why it's worth doing"),
+  cost: z.string().describe("Estimated cost for this activity (e.g., '€15 per person')")
 });
 
 const dayScheduleSchema = z.object({
   dayNumber: z.number().describe("The number of this day in the overall trip (e.g., 1, 2, 3)"),
   date: z.string().describe("Specific date for this day's schedule (e.g., 'May 8, 2025')"),
   description: z.string().optional().describe("A brief summary or theme for the day."),
-  scheduleItems: z.array(activitySchema).describe("List of scheduled activities for this day")
+  scheduleItems: z.array(activitySchema).describe("List of scheduled activities for this day"),
+  dailyCost: z.string().describe("Total estimated cost for all activities on this day")
 });
 
 const destinationSchema = z.object({
@@ -48,49 +51,73 @@ const fullItinerarySchema = z.object({
 });
 
 export async function POST(req) {
-  const { text } = await req.json();
+  try {
+    const { text } = await req.json();
+    console.log("User prompt:", text);
 
-  const result = streamObject({
-    model: google("gemini-1.5-pro-latest"),
-    messages: [
-      {
-        role: "system",
-        content:
-          `You are TriplanIQ, an AI-powered travel planner. Create a detailed travel itinerary based on the user's request.
-          Provide the output as a JSON object strictly following the provided schema.
-          The itinerary should include:
-          1.  An overall trip overview (title, dates, duration).
-          2.  A list of destinations.
-          3.  For each destination:
-              -   City and country.
-              -   The range of days this destination covers in the overall trip.
-              -   A brief, engaging narrative description of the destination.
-              -   A recommended hotel with details like name, price (per night and total for the stay), stay dates, address, a rating (out of 5), and a website/booking link. For the image URL, provide a relevant one if possible, or a good quality placeholder if not. Ensure hotel details align with the destination and trip type.
-              -   A detailed daily schedule for each day spent in that specific destination. Each schedule item should have a time, activity, and optional location. Include a brief description for each day if relevant.
-          Make the itinerary practical, engaging, and tailored to the user's preferences from the prompt.
-         .
-          Combine multiple days under a single destination with one hotel unless the user prompt clearly indicates moving hotels within a city or moving cities frequently.
-          .
-          Provide an approximate total cost estimate for activities for each day and potentially an overall trip cost estimate.`,
+    const result = streamObject({
+      model: google("gemini-2.0-pro-exp-02-05"),
+      messages: [
+        {
+          role: "system",
+          content:
+            `You are TriplanIQ, an AI-powered travel planner. Create a detailed travel itinerary based on the user's request.
+            Provide the output as a JSON object strictly following the provided schema.
+            The itinerary should include:
+            1.  An overall trip overview (title, dates, duration).
+            2.  A list of destinations.
+            3.  For each destination:
+                -   City and country.
+                -   The range of days this destination covers in the overall trip.
+                -   A brief, engaging narrative description of the destination.
+                -   A recommended hotel with details like name, price (per night and total for the stay), stay dates, address, a rating (out of 5), and a website/booking link. For the image URL, provide a relevant one if possible, or a good quality placeholder if not. Ensure hotel details align with the destination and trip type.
+                -   A detailed daily schedule for each day spent in that specific destination. Each schedule item should have a time, activity, location, a detailed paragraph description, and estimated cost.
+            Make the itinerary practical, engaging, and tailored to the user's preferences from the prompt.
+            
+            Combine multiple days under a single destination with one hotel unless the user prompt clearly indicates moving hotels within a city or moving cities frequently.
+            
+            Provide an approximate total cost estimate for activities for each day and an overall trip cost estimate.
+            
+            For each activity, include a detailed paragraph (3-5 sentences) that describes what the activity entails, what visitors can expect, and why it's worth doing.
+            
+            Calculate and include the total cost for each day based on the individual activity costs.`,
+        },
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: text,
+            },
+          ],
+        },
+      ],
+      schema: fullItinerarySchema,
+      onFinish: ({ object }) => {
+        const res = fullItinerarySchema.safeParse(object);
+        if (res.error) {
+          console.error("AI response validation error:", res.error.errors);
+          throw new Error(res.error.errors.map((e) => e.message).join("\n"));
+        }
+        // Log the complete AI response object
+        console.log("AI response:", JSON.stringify(object, null, 2));
       },
+    });
+
+    return result.toTextStreamResponse();
+  } catch (error) {
+    console.error("Error in itinerary generation:", error);
+    return new Response(
+      JSON.stringify({
+        error: true,
+        message: error.message || "An error occurred while generating the itinerary"
+      }),
       {
-        role: "user",
-        content: [
-          {
-            type: "text",
-            text: text,
-          },
-        ],
-      },
-    ],
-    schema: fullItinerarySchema,
-    onFinish: ({ object }) => {
-      const res = fullItinerarySchema.safeParse(object);
-      if (res.error) {
-        throw new Error(res.error.errors.map((e) => e.message).join("\n"));
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    },
-  });
-
-  return result.toTextStreamResponse();
+    );
+  }
 }
