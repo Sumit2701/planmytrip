@@ -56,7 +56,7 @@ export async function POST(req) {
     console.log("User prompt:", text);
 
     const result = streamObject({
-      model: google("gemini-1.5-pro"),
+      model: google("gemini-2.0-flash-001"),
       messages: [
         {
           role: "system",
