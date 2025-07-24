@@ -5,45 +5,87 @@ import { motion } from "framer-motion";
 const CallToActionSection = () => {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.7 }}
-      className="bg-gradient-to-r from-primary to-blue-700 py-16 md:py-20"
+
+      className="relative py-32 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 md:mb-6"
+      {/* Minimal Background */}
+      <div className="absolute inset-0 opacity-5">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern
+              id="cta-grid"
+              width="60"
+              height="60"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 60 0 L 0 0 0 60"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#cta-grid)" />
+        </svg>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <motion.div
+          
+          className="space-y-8"
         >
-          Ready to Plan Your Next Adventure?
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8 md:mb-10"
-        >
-          Stop stressing, start exploring. Get your personalized, AI-powered
-          itinerary in minutes.
-        </motion.p>
-        <Link href="/triplaniq" passHref>
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white hover:bg-gray-100 text-primary px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold shadow-lg transition-colors duration-200 transform"
+          {/* Bold Headline */}
+          <motion.h2
+            
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-purple-600 leading-tight"
           >
-            Get Started For Free
-          </motion.button>
-        </Link>
+            Start Planning
+            <br />
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Today
+            </span>
+          </motion.h2>
+
+          {/* Simple Description */}
+          <motion.p
+            
+            className="text-xl text-black/80 max-w-2xl mx-auto font-light"
+          >
+            AI-powered itineraries in minutes
+          </motion.p>
+
+          {/* Clean Buttons */}
+          <motion.div
+            
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+          >
+            <Link href="/triplaniq" passHref>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-all duration-200 text-lg"
+              >
+                Get Started Free
+              </motion.button>
+            </Link>
+
+            <motion.button
+              className="px-8 py-4 bg-white/10 backdrop-blur-xl border border-white/20 text-purple-900 font-medium rounded-full hover:bg-white/15 transition-all duration-200"
+            >
+              View Demo
+            </motion.button>
+          </motion.div>
+
+          {/* Minimal Trust Line */}
+          <motion.div
+            className="pt-8"
+          >
+            <p className="text-purple-900/50 text-sm font-light">
+              Trusted by 50,000+ travelers • No credit card required
+            </p>
+          </motion.div>
+        </motion.div>
       </div>
     </motion.section>
   );

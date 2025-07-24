@@ -10,8 +10,8 @@ import CallToActionSection from "./Landing/CallToActionSection";
 const Landing = () => {
   return (
     <div>
+      
       <HeroSection />
-      <HowItWorksSection />
       <ImageTextSection
         imgSrc="/images/suitcase.jpg"
         imgAlt="Traveler's bag for AI itinerary planning"
@@ -42,9 +42,6 @@ const Landing = () => {
         }
         imgOnLeft={false}
       />
-      <FeaturesSection />
-      <PricingSection />
-      <TestimonialsSection />
       <CallToActionSection />
     </div>
   );
