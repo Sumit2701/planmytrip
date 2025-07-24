@@ -59,7 +59,7 @@ export async function POST(req) {
     const modelName = process.env.flash2 || "gemini-2.0-flash-001";
     console.log(`Using AI model: ${modelName}`);
 
-    const result = streamObject({
+    const result = await generateObject({
       model: google(modelName),
       messages: [
         {
@@ -104,18 +104,23 @@ export async function POST(req) {
         },
       ],
       schema: fullItinerarySchema,
-      onFinish: ({ object }) => {
-        const res = fullItinerarySchema.safeParse(object);
-        if (res.error) {
-          console.error("AI response validation error:", res.error.errors);
-          throw new Error(res.error.errors.map((e) => e.message).join("\n"));
-        }
-        // Log the complete AI response object
-        console.log("AI response:", JSON.stringify(object, null, 2));
-      },
     });
 
-    return result.toTextStreamResponse();
+    // Validate and log the complete AI response
+    const validationResult = fullItinerarySchema.safeParse(result.object);
+    if (validationResult.error) {
+      console.error("AI response validation error:", validationResult.error.errors);
+      throw new Error(validationResult.error.errors.map((e) => e.message).join("\n"));
+    }
+    
+    console.log("AI response:", JSON.stringify(result.object, null, 2));
+
+    return new Response(JSON.stringify(result.object), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error) {
     console.error("Error in itinerary generation:", error);
     return new Response(

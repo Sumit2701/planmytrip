@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import {useEffect, useState, useRef } from "react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
@@ -8,11 +8,15 @@ export default function Home() {
   const [error, setError] = useState(null);
   const printRef = useRef(null);
 
+  // Debugging useEffect to track state changes
+ 
+
   // Existing handleSubmit function remains unchanged
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setItinerary(null); // Clear previous itinerary
     
     try {
       const response = await fetch("/api/generate_iternary", {
@@ -24,28 +28,58 @@ export default function Home() {
       });
       
       if (!response.ok) {
-        throw new Error("Failed to generate itinerary");
+        const errorText = await response.text();
+        console.error("Response error:", errorText);
+        throw new Error(`Failed to generate itinerary: ${response.status} ${response.statusText}`);
       }
-      
       // Handle streaming response
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let result = "";
       
       while (true) {
+
         const { done, value } = await reader.read();
         if (done) break;
         
-        result += decoder.decode(value, { stream: true });
-        try {
-          // Try to parse the accumulated JSON
-          const parsedData = JSON.parse(result);
-          setItinerary(parsedData);
-        } catch (e) {
-          // Continue accumulating data if it's not valid JSON yet
+        const chunk = decoder.decode(value, { stream: true });
+        result += chunk;
+        
+        // Try to parse the accumulated JSON periodically
+        const lines = result.split('\n');
+        console.log("Accumulated result:", result);
+        for (const line of lines) {
+          if (line.trim().startsWith('0:')) {
+            try {
+              const jsonStr = line.substring(2); // Remove '0:' prefix
+              const parsedData = JSON.parse(jsonStr);
+              console.log("Parsed data:", parsedData);
+              setItinerary(parsedData);
+            } catch (e) {
+              // Continue if not valid JSON yet
+              console.log("Parsing attempt failed:", e.message);
+            }
+          }
         }
       }
+      
+      // Final attempt to parse if no streaming updates worked
+      if (!itinerary && result) {
+        try {
+          // Clean up the result string
+          console.log("Final result before parsing:", result);
+          const cleanResult = result.replace(/^0:/, '').trim();
+          const finalData = JSON.parse(cleanResult);
+          console.log("Final parsed data:", finalData);
+          setItinerary(finalData);
+        } catch (e) {
+          console.error("Final parsing failed:", e);
+          throw new Error("Failed to parse the generated itinerary");
+        }
+      }
+      
     } catch (err) {
+      console.error("Error in handleSubmit:", err);
       setError(err.message);
     } finally {
       setLoading(false);

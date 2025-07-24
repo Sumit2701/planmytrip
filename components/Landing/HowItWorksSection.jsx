@@ -54,11 +54,14 @@ const HowItWorksSection = () => {
     >
       {/* Placeholder for Image */}
       <div
-        className={`w-full h-40 sm:h-48 ${step.imgPlaceholderColor} rounded-lg mb-6 flex items-center justify-center text-gray-400`}
+        className={`w-full h-40 sm:h-48  rounded-lg mb-6 flex items-center justify-center text-gray-400`}
       >
-        <span className="text-base sm:text-lg font-medium">
-          Image Placeholder
-        </span>
+        <img
+          src={step.image}
+          alt={`Step ${step.number} illustration`}
+          className="w-full h-full object-cover rounded-lg"
+          style={{ objectFit: "cover" }}
+        />
       </div>
       <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold text-lg sm:text-xl mb-4">
         {step.number}

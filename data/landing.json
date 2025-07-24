@@ -5,19 +5,19 @@
         "number": 1,
         "title": "Tell Us Your Dream Trip",
         "description": "Enter your destination, dates, interests, budget, and travel style. The more details, the better the plan.",
-        "imgPlaceholderColor": "bg-blue-100"
+        "image": "/images/photo1.png"
       },
       {
         "number": 2,
         "title": "AI Crafts Your Perfect Plan",
         "description": "Our AI analyzes your inputs, pulling real-time data for costs, events, and more to create a personalized itinerary.",
-        "imgPlaceholderColor": "bg-green-100"
+        "image": "/images/photo2.png"
       },
       {
         "number": 3,
         "title": "Explore & Adapt On The Go",
         "description": "Access your dynamic itinerary, track your budget, get packing lists, and even regenerate plans based on your mood.",
-        "imgPlaceholderColor": "bg-purple-100"
+        "image": "/images/photo3.avif"
       }
     ]
   },
