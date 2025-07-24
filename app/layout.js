@@ -21,7 +21,6 @@ export default function RootLayout({ children }) {
       <body className={`${poppins.variable} antialiased flex flex-col min-h-screen w-full`}>
         <Navbar />
         <main className="flex-grow">{children}</main>
-        <Footer />
       </body>
     </html>
   );

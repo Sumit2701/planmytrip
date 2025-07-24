@@ -11,19 +11,19 @@ function ImageTextSection({
   imgOnLeft = false,
 }) {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern
               id="grid"
-              width="60"
-              height="60"
+              width="40"
+              height="40"
               patternUnits="userSpaceOnUse"
             >
               <path
-                d="M 60 0 L 0 0 0 60"
+                d="M 40 0 L 0 0 0 40"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1"
@@ -34,9 +34,9 @@ function ImageTextSection({
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div
-          className={`flex flex-col lg:flex-row items-center gap-16 ${
+          className={`flex flex-col lg:flex-row items-center gap-10 ${
             imgOnLeft ? "lg:flex-row-reverse" : ""
           }`}
         >
@@ -50,36 +50,40 @@ function ImageTextSection({
           >
             <div className="relative group">
               {/* Decorative Elements */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-20 blur-2xl"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl opacity-15 blur-md group-hover:opacity-25 transition-opacity duration-500"></div>
+              <div className="absolute -top-3 -right-3 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-15 blur-lg"></div>
 
-              <div className="relative aspect-[4/5] max-w-lg mx-auto rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
+              <div className="relative aspect-[4/5] max-w-sm mx-auto rounded-2xl overflow-hidden shadow-xl transform group-hover:scale-105 transition-transform duration-500">
                 <Image
                   src={imgSrc}
                   alt={imgAlt}
                   layout="fill"
                   objectFit="cover"
-                  className="transition-all duration-500"
-                  sizes="(max-width: 768px) 90vw, 50vw"
+                  className="transition-all duration-500 opacity-80"
+                  sizes="(max-width: 768px) 80vw, 40vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                {/* Grain Overlay */}
+                <div className="absolute inset-0 opacity-30 mix-blend-overlay bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.3%22/%3E%3C/svg%3E')]"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
 
-              {/* Floating Stats Card */}
+              {/* Floating Stats Card with Frosted Glass */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20"
+                className="absolute -bottom-4 -left-4 bg-white/10 backdrop-blur-xl rounded-xl p-4 shadow-lg border border-white/20"
               >
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-lg">✓</span>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">✓</span>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">Smart Planning</p>
-                    <p className="text-sm text-gray-600">AI-Powered</p>
+                    <p className="font-semibold text-white text-sm">
+                      Smart Planning
+                    </p>
+                    <p className="text-xs text-white/70">AI-Powered</p>
                   </div>
                 </div>
               </motion.div>
@@ -92,18 +96,18 @@ function ImageTextSection({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex-1 space-y-8"
+            className="flex-1 space-y-6"
           >
             {subtitle && (
-              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-full">
-                <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                <span className="text-blue-700 font-semibold text-sm">
+              <div className="inline-flex items-center px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
+                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+                <span className="text-blue-700 font-medium text-xs">
                   {subtitle}
                 </span>
               </div>
             )}
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
               {title.split(" ").map((word, index) => (
                 <span
                   key={index}
@@ -118,12 +122,12 @@ function ImageTextSection({
               ))}
             </h2>
 
-            <div className="prose prose-lg text-gray-600 leading-relaxed">
+            <div className="prose prose-base text-gray-600 leading-relaxed">
               {body}
             </div>
 
-            {/* Feature Points */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+            {/* Feature Points with Frosted Glass */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
               {["Instant Results", "Smart Recommendations", "Real-time Updates", "Budget Tracking"].map(
                 (feature, index) => (
                   <motion.div
@@ -135,12 +139,14 @@ function ImageTextSection({
                       duration: 0.5,
                       delay: 0.4 + index * 0.1,
                     }}
-                    className="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200"
+                    className="flex items-center space-x-2 p-2.5 bg-white/30 backdrop-blur-sm border border-white/20 rounded-lg hover:bg-white/40 transition-all duration-200"
                   >
-                    <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-sm font-bold">✓</span>
+                    <div className="w-6 h-6 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-white text-xs font-bold">✓</span>
                     </div>
-                    <span className="font-medium text-gray-700">{feature}</span>
+                    <span className="font-medium text-gray-700 text-sm">
+                      {feature}
+                    </span>
                   </motion.div>
                 )
               )}

@@ -6,14 +6,17 @@ import FeaturesSection from "./Landing/FeaturesSection";
 import PricingSection from "./Landing/PricingSection";
 import TestimonialsSection from "./Landing/TestimonialsSection";
 import CallToActionSection from "./Landing/CallToActionSection";
+import Footer from "./Footer";
+import Plan from "./Plan";
 
 const Landing = () => {
   return (
     <div>
       
       <HeroSection />
+      <Plan/>
       <ImageTextSection
-        imgSrc="/images/suitcase.jpg"
+        imgSrc="/images/1.jpg"
         imgAlt="Traveler's bag for AI itinerary planning"
         title="AI Travel Itinerary Generator"
         subtitle="Personalized, Dynamic Planning"
@@ -23,7 +26,7 @@ const Landing = () => {
         imgOnLeft={false}
       />
       <ImageTextSection
-        imgSrc="/images/brunnete_sitting.jpg"
+        imgSrc="/images/2.jpg"
         imgAlt="Compass for real-time budget tracking"
         title="Real-Time Budget Calculator"
         subtitle="Stay On Track, Effortlessly"
@@ -33,7 +36,7 @@ const Landing = () => {
         imgOnLeft={true}
       />
       <ImageTextSection
-        imgSrc="/images/happy_woman.jpg"
+        imgSrc="/images/3.jpg"
         imgAlt="Happy traveler for mood-based trip refresh"
         title="Mood-Based Re-Generation"
         subtitle="Travel Plans That Adapt to You"
@@ -43,6 +46,7 @@ const Landing = () => {
         imgOnLeft={false}
       />
       <CallToActionSection />
+      <Footer/>
     </div>
   );
 };
