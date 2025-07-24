@@ -1,6 +1,4 @@
-import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 function ImageTextSection({
   imgSrc,
@@ -41,13 +39,7 @@ function ImageTextSection({
           }`}
         >
           {/* Image Side */}
-          <motion.div
-            initial={{ opacity: 0, x: imgOnLeft ? 50 : -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex-1 relative"
-          >
+          <div className="flex-1 relative">
             <div className="relative group">
               {/* Decorative Elements */}
               <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl opacity-15 blur-md group-hover:opacity-25 transition-opacity duration-500"></div>
@@ -68,13 +60,7 @@ function ImageTextSection({
               </div>
 
               {/* Floating Stats Card with Frosted Glass */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="absolute -bottom-4 -left-4 bg-white/10 backdrop-blur-xl rounded-xl p-4 shadow-lg border border-white/20"
-              >
+              <div className="absolute -bottom-4 -left-4 bg-white/10 backdrop-blur-xl rounded-xl p-4 shadow-lg border border-white/20">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold text-sm">✓</span>
@@ -86,18 +72,12 @@ function ImageTextSection({
                     <p className="text-xs text-white/70">AI-Powered</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Content Side */}
-          <motion.div
-            initial={{ opacity: 0, x: imgOnLeft ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex-1 space-y-6"
-          >
+          <div className="flex-1 space-y-6">
             {subtitle && (
               <div className="inline-flex items-center px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
@@ -130,15 +110,8 @@ function ImageTextSection({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
               {["Instant Results", "Smart Recommendations", "Real-time Updates", "Budget Tracking"].map(
                 (feature, index) => (
-                  <motion.div
+                  <div
                     key={feature}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.4 + index * 0.1,
-                    }}
                     className="flex items-center space-x-2 p-2.5 bg-white/30 backdrop-blur-sm border border-white/20 rounded-lg hover:bg-white/40 transition-all duration-200"
                   >
                     <div className="w-6 h-6 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center flex-shrink-0">
@@ -147,11 +120,11 @@ function ImageTextSection({
                     <span className="font-medium text-gray-700 text-sm">
                       {feature}
                     </span>
-                  </motion.div>
+                  </div>
                 )
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
