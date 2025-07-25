@@ -67,7 +67,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="relative mt-20 overflow-hidden">
+    <footer className="relative mt-12 sm:mt-20 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@ function Footer() {
         </svg>
       </div>
 
-      {/* Floating Elements */}
+      {/* Floating Elements - Reduced for mobile */}
       <div className="absolute inset-0 z-10 overflow-hidden">
         <motion.div
           animate={{
@@ -98,7 +98,7 @@ function Footer() {
             rotate: [0, 2, 0],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-10 left-16 w-8 h-8 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
+          className="absolute top-10 left-4 sm:left-16 w-6 h-6 sm:w-8 sm:h-8 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
         />
         <motion.div
           animate={{
@@ -106,7 +106,7 @@ function Footer() {
             rotate: [0, -2, 0],
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 right-20 w-12 h-12 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
+          className="absolute top-20 right-4 sm:right-20 w-8 h-8 sm:w-12 sm:h-12 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
         />
         <motion.div
           animate={{
@@ -114,16 +114,16 @@ function Footer() {
             opacity: [0.3, 0.4, 0.3],
           }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-16 left-1/3 w-16 h-16 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
+          className="absolute bottom-16 left-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
         />
       </div>
 
       <div className="relative z-20 bg-white/5 backdrop-blur-xl border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-6 sm:mb-8">
             {/* Brand Section */}
-            <div className="lg:col-span-2">
+            <div className="sm:col-span-2 lg:col-span-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ function Footer() {
                 viewport={{ once: true }}
               >
                 <div className="mb-4">
-                  <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                     TriplanIQ
                   </span>
                 </div>
@@ -141,10 +141,10 @@ function Footer() {
                   tailored just for you.
                 </p>
                 
-                {/* Newsletter Signup */}
+                {/* Newsletter Signup - Improved mobile layout */}
                 <div className="mb-4">
-                  <p className="text-gray-600 text-xs mb-2">Stay updated with travel insights</p>
-                  <div className="flex gap-2">
+                  <p className="text-gray-600 text-xs mb-3">Stay updated with travel insights</p>
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="email"
                       placeholder="Enter your email"
@@ -153,7 +153,7 @@ function Footer() {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 text-gray-700 rounded-lg hover:bg-white/15 hover:border-white/30 transition-all duration-300 text-xs"
+                      className="px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 text-gray-700 rounded-lg hover:bg-white/15 hover:border-white/30 transition-all duration-300 text-xs whitespace-nowrap"
                     >
                       Subscribe
                     </motion.button>
@@ -168,6 +168,7 @@ function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
+              className="sm:col-span-1"
             >
               <h3 className="text-gray-700 font-semibold text-sm mb-4">Product</h3>
               <ul className="space-y-2">
@@ -175,7 +176,7 @@ function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-600 hover:text-gray-800 transition-colors duration-200 text-xs"
+                      className="text-gray-600 hover:text-gray-800 transition-colors duration-200 text-xs block py-1"
                     >
                       {link.name}
                     </Link>
@@ -190,6 +191,7 @@ function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
+              className="sm:col-span-1"
             >
               <h3 className="text-gray-700 font-semibold text-sm mb-4">Company</h3>
               <ul className="space-y-2">
@@ -197,7 +199,7 @@ function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-600 hover:text-gray-800 transition-colors duration-200 text-xs"
+                      className="text-gray-600 hover:text-gray-800 transition-colors duration-200 text-xs block py-1"
                     >
                       {link.name}
                     </Link>
@@ -212,6 +214,7 @@ function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
+              className="sm:col-span-1"
             >
               <h3 className="text-gray-700 font-semibold text-sm mb-4">Support</h3>
               <ul className="space-y-2">
@@ -219,7 +222,7 @@ function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-600 hover:text-gray-800 transition-colors duration-200 text-xs"
+                      className="text-gray-600 hover:text-gray-800 transition-colors duration-200 text-xs block py-1"
                     >
                       {link.name}
                     </Link>
@@ -229,7 +232,7 @@ function Footer() {
             </motion.div>
           </div>
 
-          {/* Bottom Section */}
+          {/* Bottom Section - Improved mobile layout */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -237,31 +240,33 @@ function Footer() {
             viewport={{ once: true }}
             className="pt-6 border-t border-white/10"
           >
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
               {/* Copyright */}
-              <div className="text-gray-600 text-xs">
+              <div className="text-gray-600 text-xs text-center md:text-left order-2 md:order-1">
                 © {currentYear} TriplanIQ. All rights reserved.
               </div>
 
-              {/* Social Links */}
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-600 text-xs mr-2">Follow us:</span>
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.href}
-                    whileHover={{ scale: 1.1, y: -1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-8 h-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-white/15 hover:border-white/30 transition-all duration-300"
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </motion.a>
-                ))}
+              {/* Social Links - Better mobile layout */}
+              <div className="flex flex-col sm:flex-row items-center gap-4 order-1 md:order-2">
+                <span className="text-gray-600 text-xs">Follow us:</span>
+                <div className="flex items-center space-x-3">
+                  {socialLinks.map((social) => (
+                    <motion.a
+                      key={social.name}
+                      href={social.href}
+                      whileHover={{ scale: 1.1, y: -1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-8 h-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                      aria-label={social.name}
+                    >
+                      {social.icon}
+                    </motion.a>
+                  ))}
+                </div>
               </div>
 
               {/* Trust Badge */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center justify-center space-x-2 order-3">
                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
                 <span className="text-gray-600 text-xs">Trusted by 50,000+ travelers</span>
               </div>

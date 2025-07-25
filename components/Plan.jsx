@@ -154,7 +154,7 @@ export default function Plan() {
         </svg>
       </div>
 
-      {/* Floating Elements - matching HeroSection */}
+      {/* Floating Elements - Reduced for mobile */}
       <div className="absolute inset-0 z-20 overflow-hidden">
         <motion.div
           animate={{
@@ -162,7 +162,7 @@ export default function Plan() {
             rotate: [0, 3, 0],
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-10 w-12 h-12 bg-white/5 rounded-full  backdrop-blur-xl border border-white/10"
+          className="absolute top-20 left-4 sm:left-10 w-8 h-8 sm:w-12 sm:h-12 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
         />
         <motion.div
           animate={{
@@ -170,7 +170,7 @@ export default function Plan() {
             rotate: [0, -3, 0],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-32 right-16 w-16 h-16 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
+          className="absolute top-32 right-4 sm:right-16 w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
         />
         <motion.div
           animate={{
@@ -178,115 +178,58 @@ export default function Plan() {
             opacity: [0.3, 0.5, 0.3],
           }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-24 left-1/4 w-20 h-20 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
-        />
-
-        {/* Slow-moving bubbles beneath the form card */}
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            x: [0, 8, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/3 w-32 h-32 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 rounded-full backdrop-blur-sm border border-white/10"
-        />
-        <motion.div
-          animate={{
-            y: [0, 15, 0],
-            x: [0, -12, 0],
-            scale: [1, 0.9, 1],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-2/3 right-1/4 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full backdrop-blur-sm border border-white/10"
-        />
-        <motion.div
-          animate={{
-            y: [0, -25, 0],
-            x: [0, 6, 0],
-            rotate: [0, 15, 0],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-          className="absolute top-1/3 right-1/3 w-40 h-40 bg-gradient-to-br from-indigo-400/15 to-cyan-400/15 rounded-full backdrop-blur-sm border border-white/10"
-        />
-        <motion.div
-          animate={{
-            y: [0, 18, 0],
-            x: [0, -8, 0],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-1/3 left-1/5 w-28 h-28 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full backdrop-blur-sm border border-white/10"
-        />
-        <motion.div
-          animate={{
-            y: [0, -12, 0],
-            x: [0, 10, 0],
-            rotate: [0, -8, 0],
-          }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-          className="absolute top-3/4 left-2/3 w-36 h-36 bg-gradient-to-br from-teal-400/15 to-blue-400/15 rounded-full backdrop-blur-sm border border-white/10"
-        />
-        <motion.div
-          animate={{
-            y: [0, 22, 0],
-            x: [0, -5, 0],
-            scale: [1, 0.95, 1],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-          className="absolute bottom-1/2 right-1/5 w-20 h-20 bg-gradient-to-br from-violet-400/20 to-indigo-400/20 rounded-full backdrop-blur-sm border border-white/10"
+          className="absolute bottom-24 left-1/4 w-16 h-16 sm:w-20 sm:h-20 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
         />
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 relative z-30 pt-20">
-        {/* Hero Section - matching HeroSection style */}
-        <div className="text-center mb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-30 pt-16 sm:pt-20">
+        {/* Hero Section - Better mobile spacing */}
+        <div className="text-center mb-12 sm:mb-16">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-2xl gap-3 flex items-center justify-center sm:text-3xl lg:text-4xl xl:text-5xl text-purple-800 leading-tight mb-4"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-purple-800 leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3"
           >
-            Plan Your 
+            <span>Plan Your</span>
             <span className="font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
               Perfect
             </span>
-            <span className="">Journey</span>
+            <span>Journey</span>
           </motion.h1>
 
-
-          {/* Trust indicators */}
+          {/* Trust indicators - Better mobile layout */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-6 text-xs text-gray-500 mb-12"
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 text-xs text-gray-500 mb-8 sm:mb-12"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
               <span>AI-Powered Planning</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
               <span>Personalized Experience</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
               <span>Instant Results</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Input Section - with frosted glass effect like HeroSection */}
+        {/* Input Section - Improved mobile padding */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-          className="bg-white/10 backdrop-blur-xl ring-purple-300 ring-1 border border-white/20 rounded-2xl p-8 mb-12 "
+          className="bg-white/10 backdrop-blur-xl ring-purple-300 ring-1 border border-white/20 rounded-2xl p-4 sm:p-8 mb-8 sm:mb-12"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div>
-              <label htmlFor="prompt" className="block mb-3 text-lg font-semibold text-purple-800">
+              <label htmlFor="prompt" className="block mb-3 text-base sm:text-lg font-semibold text-purple-800">
                 Tell us about your dream trip
               </label>
               <div className="relative">
@@ -294,24 +237,24 @@ export default function Plan() {
                   id="prompt"
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  className="w-full  p-4 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 text-gray-700 resize-none text-base leading-relaxed min-h-[120px] ring-blue-400 ring-1 placeholder-gray-500"
+                  className="w-full p-3 sm:p-4 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 text-gray-700 resize-none text-sm sm:text-base leading-relaxed min-h-[100px] sm:min-h-[120px] ring-blue-400 ring-1 placeholder-gray-500"
                   placeholder="Where would you like to go? How many days? What experiences excite you most? Any special preferences or budget requirements?"
                   required
                 />
                 {isTyping && (
-                  <div className="absolute bottom-4 right-4 flex items-center gap-1">
+                  <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 flex items-center gap-1">
                     <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                     <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 )}
               </div>
-              <div className="mt-2 text-sm text-gray-500">
+              <div className="mt-2 text-xs sm:text-sm text-gray-500">
                 {prompt.length}/500 characters
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <motion.button
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
@@ -363,38 +306,35 @@ export default function Plan() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 text-center p-12"
+              className="mt-8 text-center p-8 sm:p-12"
             >
               <div className="relative inline-flex items-center justify-center mb-6">
-                <div className="w-16 h-16 border-4 border-white/20 rounded-full"></div>
-                <div className="absolute w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-white/20 rounded-full"></div>
+                <div className="absolute w-12 h-12 sm:w-16 sm:h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
               </div>
-              <h3 className="text-xl font-semibold text-purple-800 mb-3">
+              <h3 className="text-lg sm:text-xl font-semibold text-purple-800 mb-3">
                 Creating Your Itinerary
               </h3>
-              <p className="text-gray-600 max-w-md mx-auto">
+              <p className="text-gray-600 max-w-md mx-auto text-sm sm:text-base">
                 Our AI is analyzing your preferences to create the perfect travel plan. This may take 1-2 minutes.
               </p>
             </motion.div>
           )}
         </motion.div>
 
-        {/* Itinerary Display */}
+        {/* Itinerary Display - Improved mobile responsive */}
         {itinerary && (
-          <motion.div
-            
-            className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-lg"
-          >
-            {/* Header */}
-            <div className="bg-gradient-to-r from-purple-800 to-blue-800 p-8 text-white">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+          <motion.div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-lg">
+            {/* Header - Better mobile layout */}
+            <div className="bg-gradient-to-r from-purple-800 to-blue-800 p-4 sm:p-8 text-white">
+              <div className="flex flex-col gap-4 mb-4">
                 <div>
-                  <h2 className="text-2xl font-semibold mb-2">Your Personalized Itinerary</h2>
-                  <p className="text-white/80">Crafted with AI precision for your perfect journey</p>
+                  <h2 className="text-lg sm:text-2xl font-semibold mb-2">Your Personalized Itinerary</h2>
+                  <p className="text-white/80 text-sm sm:text-base">Crafted with AI precision for your perfect journey</p>
                 </div>
                 <motion.button 
-                  
-                  className="flex items-center px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition-all duration-200 border border-white/20 text-sm"
+                  onClick={handlePrint}
+                  className="self-start flex items-center px-4 sm:px-6 py-2 sm:py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition-all duration-200 border border-white/20 text-sm"
                 >
                   <span className="mr-2">📄</span>
                   Print PDF
@@ -402,14 +342,14 @@ export default function Plan() {
               </div>
             </div>
             
-            <div className="p-8 bg-white/5 backdrop-blur-sm" ref={printRef}>
-              {/* Overview */}
-              <div className="text-center mb-16 pb-8 border-b border-white/20">
-                <h2 className="text-3xl font-bold mb-4 text-purple-800">{itinerary.overview.title}</h2>
+            <div className="p-4 sm:p-8 bg-white/5 backdrop-blur-sm" ref={printRef}>
+              {/* Overview - Better mobile spacing */}
+              <div className="text-center mb-12 sm:mb-16 pb-6 sm:pb-8 border-b border-white/20">
+                <h2 className="text-xl sm:text-3xl font-bold mb-4 text-purple-800">{itinerary.overview.title}</h2>
                 {itinerary.overview.subtitle && (
-                  <p className="text-lg text-gray-700 mb-4 font-medium">{itinerary.overview.subtitle}</p>
+                  <p className="text-base sm:text-lg text-gray-700 mb-4 font-medium">{itinerary.overview.subtitle}</p>
                 )}
-                <div className="inline-flex items-center gap-4 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full border border-white/30">
+                <div className="inline-flex items-center gap-2 sm:gap-4 bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/30 text-sm sm:text-base">
                   <span className="text-gray-700 font-medium">{itinerary.overview.duration}</span>
                   <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
                   <span className="text-gray-700 font-medium">{itinerary.overview.dates}</span>
@@ -526,55 +466,57 @@ export default function Plan() {
                       <span className="mr-2">📅</span>
                       Daily Itinerary
                     </h4>
-                    
                     <div className="space-y-6">
                       {dest.schedule.map((day, dayIdx) => (
-                        <div key={dayIdx} className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30">
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-                            <div className="flex items-center gap-4">
-                              <div className="bg-gradient-to-r from-cyan-400 to-blue-400 text-white font-semibold px-4 py-2 rounded-full">
+                        <div
+                          key={dayIdx}
+                          className="bg-white/20 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/30"
+                        >
+                          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
+                            <div className="flex items-center gap-3 sm:gap-4">
+                              <div className="bg-gradient-to-r from-cyan-400 to-blue-400 text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base">
                                 Day {day.dayNumber}
                               </div>
-                              <span className="text-gray-700 font-medium">{day.date}</span>
+                              <span className="text-gray-700 font-medium text-sm sm:text-base">{day.date}</span>
                             </div>
                           </div>
-                          
                           {day.description && (
-                            <div className="font-medium mb-6 text-purple-800 bg-white/30 backdrop-blur-sm p-4 rounded-lg border border-white/40">
+                            <div className="font-medium mb-4 sm:mb-6 text-purple-800 bg-white/30 backdrop-blur-sm p-3 sm:p-4 rounded-lg border border-white/40 text-sm sm:text-base">
                               {day.description}
                             </div>
                           )}
-                          
                           {day.scheduleItems && day.scheduleItems.length > 0 && (
-                            <div className="space-y-4 mb-6">
+                            <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                               {day.scheduleItems.map((item, idx) => (
-                                <div key={idx} className="bg-white/30 backdrop-blur-sm rounded-lg p-4 border border-white/40">
-                                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
-                                    <div className="flex items-center gap-3">
-                                      <span className="bg-purple-800 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                <div
+                                  key={idx}
+                                  className="bg-white/30 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/40"
+                                >
+                                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start justify-between mb-2 sm:mb-3">
+                                    <div className="flex items-center gap-2 sm:gap-3">
+                                      <span className="bg-purple-800 text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
                                         {item.time}
                                       </span>
-                                      <h6 className="font-semibold text-purple-800">{item.activity}</h6>
+                                      <h6 className="font-semibold text-purple-800 text-sm sm:text-base">{item.activity}</h6>
                                       {item.location && (
-                                        <span className="text-gray-600 text-sm bg-white/40 backdrop-blur-sm px-2 py-1 rounded-full border border-white/50">
+                                        <span className="text-gray-600 text-xs sm:text-sm bg-white/40 backdrop-blur-sm px-2 py-1 rounded-full border border-white/50">
                                           {item.location}
                                         </span>
                                       )}
                                     </div>
                                     <div>
-                                      <span className="font-semibold text-cyan-600">{item.cost}</span>
+                                      <span className="font-semibold text-cyan-600 text-xs sm:text-sm">{item.cost}</span>
                                     </div>
                                   </div>
-                                  <p className="text-gray-700 leading-relaxed pl-0 sm:pl-16">{item.description}</p>
+                                  <p className="text-gray-700 leading-relaxed pl-0 sm:pl-16 text-xs sm:text-base">{item.description}</p>
                                 </div>
                               ))}
                             </div>
                           )}
-                          
-                          <div className="flex justify-end pt-4 border-t border-white/30">
-                            <div className="bg-white/40 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/50">
-                              <span className="text-gray-700 font-medium">Daily Total: </span>
-                              <span className="font-bold text-cyan-600">{day.dailyCost}</span>
+                          <div className="flex justify-end pt-3 sm:pt-4 border-t border-white/30">
+                            <div className="bg-white/40 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-white/50">
+                              <span className="text-gray-700 font-medium text-sm sm:text-base">Daily Total: </span>
+                              <span className="font-bold text-cyan-600 text-sm sm:text-base">{day.dailyCost}</span>
                             </div>
                           </div>
                         </div>
@@ -599,7 +541,7 @@ export default function Plan() {
         )}
       </div>
 
-      {/* Scroll Indicator - matching HeroSection */}
+      {/* Scroll Indicator */}
       <motion.div
         animate={{ y: [0, 6, 0], opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 2, repeat: Infinity }}
