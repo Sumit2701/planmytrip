@@ -10,7 +10,6 @@ export default function Plan() {
   const [isTyping, setIsTyping] = useState(false);
   const printRef = useRef(null);
 
-  // Enhanced typing effect for better UX
   useEffect(() => {
     if (prompt.length > 0) {
       setIsTyping(true);
