@@ -31,14 +31,6 @@ GOOGLE_API_KEY=your_google_key
 flash2=gemini-2.0-flash-001
 ```
 
-### API
-POST /api/generate_iternary
-Body:
-```json
-{ "text": "10 day romantic trip across Paris Berlin Prague in May 2025 moderate budget" }
-```
-Returns a JSON itinerary with: overview, destinations[], each destination with hotel + schedule (days with activities + costs), approxTotalCost.
-On validation failure returns status 500 with an error message.
 
 ### Scripts
 | script | purpose |
@@ -49,7 +41,7 @@ On validation failure returns status 500 with an error message.
 | npm run lint | lint code |
 
 ### Roadmap (condensed)
-Persistence, budgeting UI, streaming responses, export (PDF), auth, rate limiting.
+Hotel booking, Activities integration, Persistence, budgeting UI, auth, rate limiting.
 
 ### Contributing
 Small focused PRs. Include rationale if changing schema or AI prompt.
