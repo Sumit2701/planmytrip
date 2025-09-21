@@ -3,7 +3,7 @@ export const Iternary = ({ itinerary, handlePrint , printRef }) => {
   return (
     <div>
       <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-lg">
-        <div className="bg-gradient-to-r from-purple-800 to-blue-800 p-4 sm:p-8 text-white">
+        <div className="bg-purple-400 p-4 sm:p-8 text-white">
           <div className="flex flex-col gap-4 mb-4">
             <div>
               <h2 className="text-lg sm:text-2xl font-semibold mb-2">
@@ -24,37 +24,36 @@ export const Iternary = ({ itinerary, handlePrint , printRef }) => {
         </div>
 
         <div className="p-4 sm:p-8 bg-white/5 backdrop-blur-sm" ref={printRef}>
-          {/* Overview - Better mobile spacing */}
-          <div className="text-center mb-12 sm:mb-16 pb-6 sm:pb-8 border-b border-white/20">
-            <h2 className="text-xl sm:text-3xl font-bold mb-4 text-purple-800">
-              {itinerary.overview.title}
-            </h2>
-            {itinerary.overview.subtitle && (
-              <p className="text-base sm:text-lg text-gray-700 mb-4 font-medium">
-                {itinerary.overview.subtitle}
-              </p>
-            )}
-            <div className="inline-flex items-center gap-2 sm:gap-4 bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/30 text-sm sm:text-base">
-              <span className="text-gray-700 font-medium">
-                {itinerary.overview.duration}
-              </span>
-              <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
-              <span className="text-gray-700 font-medium">
-                {itinerary.overview.dates}
-              </span>
-            </div>
-          </div>
+                  <div className="text-center mb-12 sm:mb-16 pb-6 sm:pb-8 border-b border-white/20">
+                    <h2 className="text-xl sm:text-3xl font-bold mb-4 text-purple-800">
+                      {itinerary.overview.title}
+                    </h2>
+                    {itinerary.overview.subtitle && (
+                      <p className="text-base sm:text-lg text-gray-700 mb-4 font-medium">
+                        {itinerary.overview.subtitle}
+                      </p>
+                    )}
+                    <div className="inline-flex items-center gap-2 sm:gap-4 rounded-full bg-amber-300 text-white px-4 sm:px-6 py-1 shadow-lg border border-white/20 text-sm sm:text-base font-semibold">
+                      <span>
+                        {itinerary.overview.duration}
+                      </span>
+                      <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                      <span>
+                        {itinerary.overview.dates}
+                      </span>
+                    </div>
+                  </div>
 
-          {/* Destinations */}
+                  {/* Destinations */}
           {itinerary.destinations.map((dest, destIdx) => (
             <div key={destIdx} className="mb-20 last:mb-0">
               {/* Destination Header */}
-              <div className="mb-12 pb-6 border-b border-white/20">
+              <div className="mb-6 pb-6 border-b border-white/20">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
                   <h3 className="text-2xl font-bold text-purple-800">
                     {dest.city}, {dest.country}
                   </h3>
-                  <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-400 to-blue-400 text-white rounded-full text-sm font-semibold">
+                  <div className="inline-flex items-center px-4 py-2 bg-blue-400 text-white rounded-full text-sm font-semibold">
                     Days {dest.daysRange.replace(/[^0-9\-]/g, "")}
                   </div>
                 </div>
@@ -154,7 +153,7 @@ export const Iternary = ({ itinerary, handlePrint , printRef }) => {
                             href={dest.hotel.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-medium hover:from-purple-700 hover:to-blue-700 transition-all duration-200 text-sm"
+                            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full font-medium hover:from-purple-700 hover:to-blue-700 transition-all duration-200 text-sm"
                           >
                             <span className="mr-2">🔗</span>
                             Book Now
@@ -180,7 +179,7 @@ export const Iternary = ({ itinerary, handlePrint , printRef }) => {
                     >
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
                         <div className="flex items-center gap-3 sm:gap-4">
-                          <div className="bg-gradient-to-r from-cyan-400 to-blue-400 text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base">
+                          <div className="bg-cyan-400 text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base">
                             Day {day.dayNumber}
                           </div>
                           <span className="text-gray-700 font-medium text-sm sm:text-base">
@@ -202,7 +201,7 @@ export const Iternary = ({ itinerary, handlePrint , printRef }) => {
                             >
                               <div className="flex flex-col gap-2 sm:flex-row sm:items-start justify-between mb-2 sm:mb-3">
                                 <div className="flex items-center gap-2 sm:gap-3">
-                                  <span className="bg-purple-800 text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
+                                  <span className="">
                                     {item.time}
                                   </span>
                                   <h6 className="font-semibold text-purple-800 text-sm sm:text-base">
@@ -247,7 +246,7 @@ export const Iternary = ({ itinerary, handlePrint , printRef }) => {
           {/* Total Cost */}
           {itinerary.approxTotalCost && (
             <div className="mt-16 text-center">
-              <div className="inline-block bg-gradient-to-r from-purple-800 to-blue-800 p-8 rounded-xl text-white">
+              <div className="inline-block bg-blue-800 p-8 rounded-xl text-white">
                 <h3 className="text-lg font-semibold mb-2">
                   Total Estimated Cost
                 </h3>
