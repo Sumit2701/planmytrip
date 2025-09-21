@@ -1,22 +1,17 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { ArrowLeft } from "lucide-react";
+import { Iternary } from "./Iternary";
 
 export default function Plan() {
   const [prompt, setPrompt] = useState("");
   const [itinerary, setItinerary] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isTyping, setIsTyping] = useState(false);
+  const [showInput, setShowInput] = useState(true);
   const printRef = useRef(null);
-
-  useEffect(() => {
-    if (prompt.length > 0) {
-      setIsTyping(true);
-      const timer = setTimeout(() => setIsTyping(false), 500);
-      return () => clearTimeout(timer);
-    }
-  }, [prompt]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,6 +68,7 @@ export default function Plan() {
           const finalData = JSON.parse(cleanResult);
           console.log("Final parsed data:", finalData);
           setItinerary(finalData);
+          setShowInput(false); // Hide input section when itinerary is generated
         } catch (e) {
           console.error("Final parsing failed:", e);
           throw new Error("Failed to parse the generated itinerary");
@@ -110,7 +106,7 @@ export default function Plan() {
           color: #333333;
         ">
           <div style="text-align: center; margin-bottom: 40px; border-bottom: 2px solid #0A2342; padding-bottom: 20px;">
-            <h1 style="color: #0A2342; font-size: 2.5rem; margin: 0; font-weight: 700;">TriplanIQ</h1>
+            <h1 style="color: #0A2342; font-size: 2.5rem; margin: 0; font-weight: 700;">Plan My Trip</h1>
             <p style="color: #A9A9A9; margin: 10px 0 0 0; font-size: 1.1rem;">Your AI-Powered Travel Planner</p>
           </div>
           ${printContents}
@@ -127,429 +123,120 @@ export default function Plan() {
     setPrompt("");
     setItinerary(null);
     setError(null);
+    setShowInput(true);
+  };
+
+  const handleBackToInput = () => {
+    setShowInput(true);
+    setItinerary(null);
+    setError(null);
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Pattern - matching HeroSection */}
-      <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="grid"
-              width="40"
-              height="40"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 40 0 L 0 0 0 40"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="max-w-4xl mx-auto px-6 py-20">
+        {showInput ? (
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-6">
+              Plan Your Perfect Journey
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Tell us about your dream trip, and our AI will create a personalized itinerary for you.
+            </p>
 
-      {/* Floating Elements - Reduced for mobile */}
-      <div className="absolute inset-0 z-20 overflow-hidden">
-        <motion.div
-          animate={{
-            y: [0, -12, 0],
-            rotate: [0, 3, 0],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-4 sm:left-10 w-8 h-8 sm:w-12 sm:h-12 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
-        />
-        <motion.div
-          animate={{
-            y: [0, 15, 0],
-            rotate: [0, -3, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-32 right-4 sm:right-16 w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.05, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-24 left-1/4 w-16 h-16 sm:w-20 sm:h-20 bg-white/5 rounded-full backdrop-blur-xl border border-white/10"
-        />
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-30 pt-16 sm:pt-20">
-        {/* Hero Section - Better mobile spacing */}
-        <div className="text-center mb-12 sm:mb-16">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-purple-800 leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3"
-          >
-            <span>Plan Your</span>
-            <span className="font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Perfect
-            </span>
-            <span>Journey</span>
-          </motion.h1>
-
-          {/* Trust indicators - Better mobile layout */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 text-xs text-gray-500 mb-8 sm:mb-12"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-              <span>AI-Powered Planning</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-              <span>Personalized Experience</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-              <span>Instant Results</span>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Input Section - Improved mobile padding */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-          className="bg-white/10 backdrop-blur-xl ring-purple-300 ring-1 border border-white/20 rounded-2xl p-4 sm:p-8 mb-8 sm:mb-12"
-        >
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-            <div>
-              <label htmlFor="prompt" className="block mb-3 text-base sm:text-lg font-semibold text-purple-800">
-                Tell us about your dream trip
-              </label>
-              <div className="relative">
-                <textarea
-                  id="prompt"
-                  value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                  className="w-full p-3 sm:p-4 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 text-gray-700 resize-none text-sm sm:text-base leading-relaxed min-h-[100px] sm:min-h-[120px] ring-blue-400 ring-1 placeholder-gray-500"
-                  placeholder="Where would you like to go? How many days? What experiences excite you most? Any special preferences or budget requirements?"
-                  required
-                />
-                {isTyping && (
-                  <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 flex items-center gap-1">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                  </div>
-                )}
-              </div>
-              <div className="mt-2 text-xs sm:text-sm text-gray-500">
-                {prompt.length}/500 characters
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <motion.button
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                disabled={loading || !prompt.trim()}
-                className="group relative flex-1 px-6 py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 text-gray-700 font-medium rounded-full hover:bg-indigo/15 hover:border-white/30 transition-all duration-300 overflow-hidden text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {!loading && (
-                  <>
-                    <span className="relative z-10">Generate Itinerary</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </>
-                )}
-              </motion.button>
-              
-              {(prompt || itinerary) && (
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="button"
-                  onClick={handleClearForm}
-                  className="px-6 py-2.5 bg-white/5 backdrop-blur-xl border border-white/10 text-gray-600 font-medium rounded-full hover:bg-white/10 hover:border-white/20 transition-all duration-300 text-sm"
-                >
-                  Clear
-                </motion.button>
-              )}
-            </div>
-          </form>
-
-          {/* Error Display */}
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-6 p-4 bg-red-500/10 backdrop-blur-sm border border-red-500/20 text-red-700 rounded-xl"
-            >
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0">⚠</div>
+            <div className="bg-white/60 backdrop-blur-sm border border-white/20 rounded-2xl p-8 shadow-lg">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <p className="font-semibold">Something went wrong</p>
-                  <p className="mt-1 text-sm">{error}</p>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Loading State */}
-          {loading && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-8 text-center p-8 sm:p-12"
-            >
-              <div className="relative inline-flex items-center justify-center mb-6">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-white/20 rounded-full"></div>
-                <div className="absolute w-12 h-12 sm:w-16 sm:h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-purple-800 mb-3">
-                Creating Your Itinerary
-              </h3>
-              <p className="text-gray-600 max-w-md mx-auto text-sm sm:text-base">
-                Our AI is analyzing your preferences to create the perfect travel plan. This may take 1-2 minutes.
-              </p>
-            </motion.div>
-          )}
-        </motion.div>
-
-        {/* Itinerary Display - Improved mobile responsive */}
-        {itinerary && (
-          <motion.div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-lg">
-            {/* Header - Better mobile layout */}
-            <div className="bg-gradient-to-r from-purple-800 to-blue-800 p-4 sm:p-8 text-white">
-              <div className="flex flex-col gap-4 mb-4">
-                <div>
-                  <h2 className="text-lg sm:text-2xl font-semibold mb-2">Your Personalized Itinerary</h2>
-                  <p className="text-white/80 text-sm sm:text-base">Crafted with AI precision for your perfect journey</p>
-                </div>
-                <motion.button 
-                  onClick={handlePrint}
-                  className="self-start flex items-center px-4 sm:px-6 py-2 sm:py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition-all duration-200 border border-white/20 text-sm"
-                >
-                  <span className="mr-2">📄</span>
-                  Print PDF
-                </motion.button>
-              </div>
-            </div>
-            
-            <div className="p-4 sm:p-8 bg-white/5 backdrop-blur-sm" ref={printRef}>
-              {/* Overview - Better mobile spacing */}
-              <div className="text-center mb-12 sm:mb-16 pb-6 sm:pb-8 border-b border-white/20">
-                <h2 className="text-xl sm:text-3xl font-bold mb-4 text-purple-800">{itinerary.overview.title}</h2>
-                {itinerary.overview.subtitle && (
-                  <p className="text-base sm:text-lg text-gray-700 mb-4 font-medium">{itinerary.overview.subtitle}</p>
-                )}
-                <div className="inline-flex items-center gap-2 sm:gap-4 bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/30 text-sm sm:text-base">
-                  <span className="text-gray-700 font-medium">{itinerary.overview.duration}</span>
-                  <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
-                  <span className="text-gray-700 font-medium">{itinerary.overview.dates}</span>
-                </div>
-              </div>
-
-              {/* Destinations */}
-              {itinerary.destinations.map((dest, destIdx) => (
-                <div key={destIdx} className="mb-20 last:mb-0">
-                  {/* Destination Header */}
-                  <div className="mb-12 pb-6 border-b border-white/20">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-                      <h3 className="text-2xl font-bold text-purple-800">{dest.city}, {dest.country}</h3>
-                      <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-400 to-blue-400 text-white rounded-full text-sm font-semibold">
-                        Days {dest.daysRange.replace(/[^0-9\-]/g, '')}
-                      </div>
-                    </div>
+                  <label htmlFor="prompt" className="block mb-3 text-lg font-semibold text-gray-800">
+                    Describe your ideal trip
+                  </label>
+                  <Textarea
+                    id="prompt"
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    className="min-h-[120px] text-base"
+                    placeholder="Where would you like to go? How many days? What experiences excite you most? Any special preferences or budget requirements?"
+                    required
+                  />
+                  <div className="mt-2 text-sm text-gray-500">
+                    {prompt.length}/500 characters
                   </div>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    type="submit"
+                    disabled={loading || !prompt.trim()}
+                    className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                    size="lg"
+                  >
+                    {loading ? "Generating..." : "Generate Itinerary"}
+                  </Button>
                   
-                  {/* Two-column Layout */}
-                  <div className="grid lg:grid-cols-2 gap-12 mb-12">
-                    {/* Destination Info */}
-                    <div>
-                      <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                        {dest.description}
-                      </p>
-                    </div>
-                    
-                    {/* Accommodation */}
-                    <div>
-                      <h4 className="text-lg font-semibold mb-6 text-purple-800 flex items-center">
-                        <span className="mr-2">🏨</span>
-                        Accommodation
-                      </h4>
-                      <div className="bg-white/20 backdrop-blur-sm rounded-xl overflow-hidden border border-white/30">
-                        {dest.hotel.imageUrl && (
-                          <div className="relative h-48 overflow-hidden">
-                            <img
-                              src={dest.hotel.imageUrl}
-                              alt={dest.hotel.name}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = "https://placehold.co/600x400?text=Hotel+Image";
-                              }}
-                            />
-                            {/* Grain overlay for hotel images too */}
-                            <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.3%22/%3E%3C/svg%3E')]"></div>
-                          </div>
-                        )}
-                        <div className="p-6">
-                          <h5 className="text-lg font-semibold mb-4 text-purple-800">{dest.hotel.name}</h5>
-                          <div className="space-y-3 mb-6">
-                            {dest.hotel.stayDates && (
-                              <div className="flex items-center text-gray-700 text-sm">
-                                <span className="mr-2">📅</span>
-                                <span className="font-medium">{dest.hotel.stayDates}</span>
-                              </div>
-                            )}
-                            {dest.hotel.address && (
-                              <div className="flex items-start text-gray-700 text-sm">
-                                <span className="mr-2 mt-0.5">📍</span>
-                                <span>{dest.hotel.address}</span>
-                              </div>
-                            )}
-                            {dest.hotel.rating && (
-                              <div className="flex items-center">
-                                <div className="flex mr-2">
-                                  {[...Array(5)].map((_, i) => (
-                                    <span
-                                      key={i}
-                                      className={`text-sm ${i < Math.floor(dest.hotel.rating) ? 'text-yellow-400' : 'text-gray-400'}`}
-                                    >
-                                      ⭐
-                                    </span>
-                                  ))}
-                                </div>
-                                <span className="text-gray-700 font-medium text-sm">{dest.hotel.rating}/5</span>
-                              </div>
-                            )}
-                          </div>
-                          
-                          <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
-                            <div>
-                              {dest.hotel.pricePerNight && (
-                                <div className="text-lg font-bold text-purple-800">{dest.hotel.pricePerNight}</div>
-                              )}
-                              {dest.hotel.totalPrice && (
-                                <div className="text-sm text-gray-600">{dest.hotel.totalPrice} total</div>
-                              )}
-                            </div>
-                            {dest.hotel.websiteUrl && (
-                              <motion.a
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                href={dest.hotel.websiteUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-medium hover:from-purple-700 hover:to-blue-700 transition-all duration-200 text-sm"
-                              >
-                                <span className="mr-2">🔗</span>
-                                Book Now
-                              </motion.a>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Daily Itinerary */}
-                  <div className="mb-12">
-                    <h4 className="text-lg font-semibold mb-8 text-purple-800 flex items-center">
-                      <span className="mr-2">📅</span>
-                      Daily Itinerary
-                    </h4>
-                    <div className="space-y-6">
-                      {dest.schedule.map((day, dayIdx) => (
-                        <div
-                          key={dayIdx}
-                          className="bg-white/20 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/30"
-                        >
-                          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
-                            <div className="flex items-center gap-3 sm:gap-4">
-                              <div className="bg-gradient-to-r from-cyan-400 to-blue-400 text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base">
-                                Day {day.dayNumber}
-                              </div>
-                              <span className="text-gray-700 font-medium text-sm sm:text-base">{day.date}</span>
-                            </div>
-                          </div>
-                          {day.description && (
-                            <div className="font-medium mb-4 sm:mb-6 text-purple-800 bg-white/30 backdrop-blur-sm p-3 sm:p-4 rounded-lg border border-white/40 text-sm sm:text-base">
-                              {day.description}
-                            </div>
-                          )}
-                          {day.scheduleItems && day.scheduleItems.length > 0 && (
-                            <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
-                              {day.scheduleItems.map((item, idx) => (
-                                <div
-                                  key={idx}
-                                  className="bg-white/30 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/40"
-                                >
-                                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start justify-between mb-2 sm:mb-3">
-                                    <div className="flex items-center gap-2 sm:gap-3">
-                                      <span className="bg-purple-800 text-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
-                                        {item.time}
-                                      </span>
-                                      <h6 className="font-semibold text-purple-800 text-sm sm:text-base">{item.activity}</h6>
-                                      {item.location && (
-                                        <span className="text-gray-600 text-xs sm:text-sm bg-white/40 backdrop-blur-sm px-2 py-1 rounded-full border border-white/50">
-                                          {item.location}
-                                        </span>
-                                      )}
-                                    </div>
-                                    <div>
-                                      <span className="font-semibold text-cyan-600 text-xs sm:text-sm">{item.cost}</span>
-                                    </div>
-                                  </div>
-                                  <p className="text-gray-700 leading-relaxed pl-0 sm:pl-16 text-xs sm:text-base">{item.description}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                          <div className="flex justify-end pt-3 sm:pt-4 border-t border-white/30">
-                            <div className="bg-white/40 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-white/50">
-                              <span className="text-gray-700 font-medium text-sm sm:text-base">Daily Total: </span>
-                              <span className="font-bold text-cyan-600 text-sm sm:text-base">{day.dailyCost}</span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  {prompt && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={handleClearForm}
+                      size="lg"
+                    >
+                      Clear
+                    </Button>
+                  )}
                 </div>
-              ))}
-              
-              {/* Total Cost */}
-              {itinerary.approxTotalCost && (
-                <div className="mt-16 text-center">
-                  <div className="inline-block bg-gradient-to-r from-purple-800 to-blue-800 p-8 rounded-xl text-white">
-                    <h3 className="text-lg font-semibold mb-2">Total Estimated Cost</h3>
-                    <p className="text-2xl font-bold">{itinerary.approxTotalCost}</p>
-                    <p className="text-white/80 mt-2 text-sm">*Prices are approximate and may vary</p>
+              </form>
+
+              {/* Error Display */}
+              {error && (
+                <div className="mt-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl">
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0">⚠</div>
+                    <div>
+                      <p className="font-semibold">Something went wrong</p>
+                      <p className="mt-1 text-sm">{error}</p>
+                    </div>
                   </div>
                 </div>
               )}
+
+              {/* Loading State */}
+              {loading && (
+                <div className="mt-8 text-center p-12">
+                  <div className="relative inline-flex items-center justify-center mb-6">
+                    <div className="w-16 h-16 border-4 border-gray-200 rounded-full"></div>
+                    <div className="absolute w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                    Creating Your Itinerary
+                  </h3>
+                  <p className="text-gray-600 max-w-md mx-auto">
+                    Our AI is analyzing your preferences to create the perfect travel plan. This may take 1-2 minutes.
+                  </p>
+                </div>
+              )}
             </div>
-          </motion.div>
+          </div>
+        ) : (
+          <div>
+            {/* Back Button */}
+            <div className="mb-6">
+              <Button
+                variant="outline"
+                onClick={handleBackToInput}
+                className="flex items-center gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Planning
+              </Button>
+            </div>
+
+            {/* Itinerary Display */}
+            {itinerary && (
+              <Iternary itinerary={itinerary} handlePrint={handlePrint} printRef={printRef} />
+            )}
+          </div>
         )}
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 6, 0], opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30"
-      >
-        <div className="w-4 h-6 border border-white/30 rounded-full flex justify-center backdrop-blur-xl">
-          <div className="w-0.5 h-1.5 bg-white/60 rounded-full mt-1"></div>
-        </div>
-      </motion.div>
     </div>
   );
 }

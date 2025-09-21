@@ -65,7 +65,7 @@ export async function POST(req) {
         {
           role: "system",
           content:
-            `You are TriplanIQ, an AI-powered travel planner. Create a detailed travel itinerary based on the user's request.
+            `You are Trip Planner, an AI-powered travel planner. Create a detailed travel itinerary based on the user's request.
             Provide the output as a JSON object strictly following the provided schema.
             The itinerary should include:
             1.  An overall trip overview (title, dates, duration).
