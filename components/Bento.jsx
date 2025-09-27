@@ -6,7 +6,7 @@ import { SiFiverr } from 'react-icons/si';
 const BentoSlider = () => {
     const bentoCards = [
         {
-          quote: "TriplanIQ turned my vague travel dreams into a detailed, multi-destination itinerary. From flights to hotels, it covered everything seamlessly!",
+          quote: "Tourmagic turned my vague travel dreams into a detailed, multi-destination itinerary. From flights to hotels, it covered everything seamlessly!",
           name: "Alex Rivera",
           title: "Adventure Traveler",
           image: "/plane.svg",  
@@ -15,7 +15,7 @@ const BentoSlider = () => {
           ]
         },
         {
-          quote: "As a busy professional, planning trips was always a hassle. TriplanIQ's AI-generated itineraries saved me hours and made my vacation stress-free.",
+          quote: "As a busy professional, planning trips was always a hassle. Tourmagic's AI-generated itineraries saved me hours and made my vacation stress-free.",
           name: "Jordan Lee",
           title: "Business Traveler",
           image: "/hot_air_balloon.svg",
@@ -33,7 +33,7 @@ const BentoSlider = () => {
           ]
         },
         {
-          quote: "TriplanIQ's insights into destinations and activities made my solo trip unforgettable. It's like having a personal travel guide!",
+          quote: "Tourmagic's insights into destinations and activities made my solo trip unforgettable. It's like having a personal travel guide!",
           name: "Morgan Patel",
           title: "Solo Explorer",
           image: "/cloud.svg",
@@ -114,7 +114,7 @@ export const Bento = () => (
     <div className="max-w-4xl mx-auto w-full px-2 md:px-6">
       <div className="flex items-center mb-8 md:mb-12 ">
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-unbounded text-neutral-700 md:text-neutral-700 bg-clip-text">
-          Why TriplanIQ?
+          Why Tourmagic?
         </h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3  gap-6">
@@ -132,7 +132,7 @@ export const Bento = () => (
             We understand!
           </h2> 
           <p className="mt-2 text-left text-base md:text-lg text-neutral-600">
-            That’s why TriplanIQ uses AI to generate personalized, structured itineraries from your free-form travel ideas. Cover multiple destinations, detailed schedules, cost estimates, and more. Save time, reduce stress, and focus on creating memories.
+            That’s why Tourmagic uses AI to generate personalized, structured itineraries from your free-form travel ideas. Cover multiple destinations, detailed schedules, cost estimates, and more. Save time, reduce stress, and focus on creating memories.
           </p>
 
         </div>

@@ -17,7 +17,7 @@ export default function Home() {
           </Badge>
           
           <h1 className="text-5xl md:text-7xl font-bold text-neutral-700 mb-6">
-            Plan My Trip
+            Tour Magic
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -26,7 +26,7 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/triplaniq">
+            <Link href="/tourmagic">
               <Button size="lg" 
               className="px-8 cursor-pointer py-4 text-lg bg-pink-500/20 hover:bg-pink-300 ">
                 Start Planning Now
@@ -51,9 +51,9 @@ export default function Home() {
             Ready to Plan Your Perfect Trip?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Join thousands of travelers who trust TriplanIQ to create unforgettable journeys.
+            Join thousands of travelers who trust Tourmagic to create unforgettable journeys.
           </p>
-          <Link href="/triplaniq">
+          <Link href="/tourmagic">
             <Button size="lg" 
               className="px-8 cursor-pointer py-4 text-lg bg-pink-500/20 hover:bg-pink-300 ">
               Start Planning Now

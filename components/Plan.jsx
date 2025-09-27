@@ -111,7 +111,7 @@ export default function Plan() {
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold text-neutral-700 mb-6">Plan Your Perfect Trip</h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto">Tell us about your dream adventure and our AI will craft a personalized multi-destination itinerary just for you.</p>
-            <div className="bg-white/70 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-sm">
+            <div className="bg-white/70 backdrop-blur-xl border border-white/40 rounded-lg p-8 shadow-sm">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="prompt" className="block mb-3 text-lg font-semibold text-neutral-700">Describe your ideal trip</label>
